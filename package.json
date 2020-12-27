@@ -1,0 +1,22 @@
+{
+    "name": "e-commerce",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "scripts": {
+        "dev": "nodemon ./src/index.js"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.17.1",
+        "pg": "^8.5.1"
+    },
+    "devDependencies": {
+        "dotenv": "^8.2.0",
+        "morgan": "^1.10.0",
+        "nodemon": "^2.0.6",
+        "prettier": "^2.2.1"
+    }
+}
