@@ -10,12 +10,12 @@ module.exports = class MainRouter {
 
   constructor() {
     this.router.use("/api", this.apiRouter);
-    // this.userRouter = new UserRouter(new UserController());
+    this.userRouter = new UserRouter(new UserController());
     this.productRouter = new ProductRouter(new ProductController());
   }
 
   execute = () => {
-    // this.apiRouter.use("/users", this.userRouter.execute());
+    this.apiRouter.use("/users", this.userRouter.execute());
     this.apiRouter.use("/products", this.productRouter.execute());
 
     // this.apiRouter.use("products", this.productRouter);

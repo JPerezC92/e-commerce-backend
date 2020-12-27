@@ -1,7 +1,6 @@
 const { Router } = require("express");
 
 class ProductRouter {
-  // controller = null;
   router = Router();
   constructor(ProductController) {
     this.controller = ProductController;

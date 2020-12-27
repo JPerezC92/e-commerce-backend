@@ -9,19 +9,16 @@ const config = {
 };
 
 class Connection {
-  // client;
-
-  // constructor() {}
-
   query = async (query) => {
     this.client = new Client(config);
+
     this.client.connect();
     const data = await this.client
       .query(query)
       .then((res) => res)
-      .catch((e) => console.error(e.stack));
-    console.log({ config });
+      .catch((e) => e.stack);
     this.client.end();
+
     return data;
   };
 }

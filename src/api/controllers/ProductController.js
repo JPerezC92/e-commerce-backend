@@ -1,4 +1,5 @@
 const Connection = require("../db/Connection");
+const { v4: uuidv4 } = require("uuid");
 
 class ProductController {
   constructor() {
@@ -33,18 +34,18 @@ class ProductController {
   };
 
   createProduct = async (req, res) => {
-    const { id, name, price } = await req.body;
-
+    const { description, price } = await req.body;
+    const id = uuidv4();
     const data = await this.connection.query({
       name: "create-product",
-      text: "INSERT INTO products(id, name, price) VALUES($1, $2, $3)",
-      values: [id, name, price],
+      text: "INSERT INTO products(id, description, price) VALUES($1, $2, $3)",
+      values: [id, description, price],
     });
 
     return res.status(200).json({
       error: false,
       message: "",
-      payload: { id, name, price },
+      payload: { id, description, price },
     });
   };
 
@@ -57,7 +58,7 @@ class ProductController {
     });
     return res.status(200).json({
       error: false,
-      message: "",
+      message: "product deleted",
       payload: data,
     });
   };
@@ -105,17 +106,17 @@ class ProductController {
   };
 
   searchProduct = async (req, res) => {
-    const { name } = req.body;
+    const { description } = req.body;
 
     const data = await this.connection.query({
       name: "search-products",
-      text: "SELECT * FROM products WHERE name LIKE $1",
-      values: [`${name}%`],
+      text: "SELECT * FROM products WHERE description LIKE $1",
+      values: [`${description}%`],
     });
 
     return res.status(200).json({
       error: false,
-      message: "",
+      message: "product matching",
       payload: data.rows,
     });
   };

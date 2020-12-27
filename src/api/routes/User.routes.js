@@ -8,6 +8,8 @@ class UserRouter {
 
   execute = () => {
     this.router.get("/", this.controller.getUsers);
+    this.router.post("/", this.controller.createUser);
+    this.router.delete("/:id", this.controller.deleteUser);
     return this.router;
   };
 }
