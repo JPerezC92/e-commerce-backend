@@ -1,9 +1,8 @@
-const Connection = require("../db/Connection");
 const { v4: uuidv4 } = require("uuid");
 
 class ProductController {
-  constructor() {
-    this.connection = new Connection();
+  constructor(connection) {
+    this.connection = connection;
   }
 
   getProducts = async (req, res) => {
